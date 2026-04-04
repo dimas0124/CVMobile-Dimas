@@ -1,0 +1,79 @@
+<div class="card fade-in">
+    <h2 style="text-align: center; color: var(--text-main); margin-bottom: 25px;">My GitHub Profile</h2>
+    
+    <div id="github-loading" style="text-align: center; padding: 40px;">
+        <div class="spinner"></div>
+        <p style="color: var(--text-muted); margin-top: 10px;">Mengambil data dari GitHub...</p>
+    </div>
+
+    <div id="github-error" style="display: none; text-align: center; color: #e74c3c; padding: 20px;">
+        <p>Gagal memuat data GitHub. Silakan coba lagi nanti.</p>
+    </div>
+
+    <div id="github-profile" style="display: none; text-align: center;">
+        <img id="gh-avatar" src="" class="profile-img" style="width: 120px; height: 120px;">
+        <h3 id="gh-name" style="margin: 10px 0 5px; color: var(--text-main);"></h3>
+        <p id="gh-username" style="color: var(--primary); font-weight: 600; margin-bottom: 20px;"></p>
+        
+        <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 30px;">
+            <div style="background: var(--bg-body); padding: 10px 20px; border-radius: 10px; border: 1px solid var(--border-color);">
+                <strong id="gh-repos" style="display: block; font-size: 1.2rem; color: var(--text-main);">0</strong>
+                <small style="color: var(--text-muted);">Repositories</small>
+            </div>
+            <div style="background: var(--bg-body); padding: 10px 20px; border-radius: 10px; border: 1px solid var(--border-color);">
+                <strong id="gh-followers" style="display: block; font-size: 1.2rem; color: var(--text-main);">0</strong>
+                <small style="color: var(--text-muted);">Followers</small>
+            </div>
+        </div>
+
+        <h4 style="text-align: left; color: var(--text-main); border-bottom: 2px solid var(--border-color); padding-bottom: 10px;">Latest Repositories</h4>
+        <div id="gh-repo-list" style="text-align: left; margin-top: 15px;">
+            </div>
+    </div>
+</div>
+
+<style>
+    .spinner {
+        width: 40px; height: 40px; 
+        border: 4px solid var(--border-color); 
+        border-top: 4px solid var(--primary);
+        border-radius: 50%; margin: 0 auto; 
+        animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    
+    .repo-item {
+        background: var(--bg-card); 
+        border: 1px solid var(--border-color); 
+        padding: 15px;
+        border-radius: 10px; 
+        margin-bottom: 10px; 
+        transition: 0.3s;
+    }
+    .repo-item:hover { 
+        border-color: var(--primary); 
+        background: var(--bg-body); 
+    }
+    
+    /* Memastikan link di dalam repo item terlihat jelas */
+    .repo-item a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 700;
+    }
+    
+    .repo-item p {
+        color: var(--text-muted);
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+    }
+    .profile-img {
+        width: 130px; /* Sedikit lebih besar agar proposional */
+        height: 130px;
+        border-radius: 50%; /* Membuat jadi bulat sempurna */
+        object-fit: cover; /* Memastikan foto tidak gepeng */
+        border: 4px solid var(--primary); /* Memberi border biru seperti di home */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* Memberi bayangan agar estetis */
+        margin-bottom: 15px; /* Memberi jarak ke nama */
+    }
+</style>

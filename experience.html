@@ -1,0 +1,37 @@
+<div class="card fade-in">
+    <h2 class="section-title" style="text-align: center; color: var(--text-main); margin-bottom: 30px;">Work Experience</h2>
+    
+    <div class="timeline" style="max-width: 800px; margin: 0 auto;">
+        
+        <div class="timeline-item">
+            <h4 style="color: var(--primary); margin: 0;">PAL (Praktik Adaptasi Lapangan)</h4>
+            <p style="margin: 5px 0; font-weight: 600; color: var(--text-main);">SMA PGRI Rancaekek | 2025</p>
+            <p style="margin: 10px 0 5px; color: var(--text-main); font-weight: bold;">Judul Project: Rancang Bangun Sistem Informasi Inventaris SMA PGRI Rancaekek</p>
+            <small style="color: var(--text-muted); display: block; line-height: 1.6;">
+                Membangun sistem informasi inventaris berbasis web untuk mendigitalisasi pendataan aset di SMA PGRI Rancaekek. Bertanggung jawab dalam merancang database dan antarmuka pengguna.
+            </small>
+        </div>
+
+        <div class="timeline-item">
+            <h4 style="color: var(--primary); margin: 0;">PPL (Praktik Pengenalan Lapangan)</h4>
+            <p style="margin: 5px 0; font-weight: 600; color: var(--text-main);">PT. Dangdeur | 2025</p>
+            <p style="margin: 10px 0 5px; color: var(--text-main); font-weight: bold;">Judul Project: Rekapitulasi Data Penjualan dan Biaya Operasional Armada</p>
+            <small style="color: var(--text-muted); display: block; line-height: 1.6;">
+                Melakukan pengolahan dan rekapitulasi data keuangan terkait penjualan serta biaya operasional armada transportasi di PT. Dangdeur.
+            </small>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .timeline { padding: 20px 10px; }
+    .timeline-item { border-left: 3px solid var(--primary); padding-left: 25px; padding-bottom: 40px; position: relative; transition: 0.3s; }
+    .timeline-item::before { 
+        content: ''; width: 14px; height: 14px; background: var(--primary); 
+        position: absolute; left: -9px; top: 4px; border-radius: 50%; 
+        border: 2px solid var(--bg-card); box-shadow: 0 0 0 3px var(--primary-soft); 
+    }
+    .timeline-item:last-child { border-left: 3px solid transparent; padding-bottom: 0; }
+    .timeline-item:hover { transform: translateX(5px); }
+</style>

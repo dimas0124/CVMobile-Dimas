@@ -1,0 +1,96 @@
+<div class="card fade-in">
+    <h2 class="section-title" style="text-align: center; color: var(--text-main); margin-bottom: 30px;">Seminars & Certifications</h2>
+    
+    <div class="portfolio-grid">
+        
+        <div class="port-card certificate-card">
+            <div class="cert-icon">📜</div>
+            <h3>Sertifikat Kompetensi TKJ</h3>
+            <p>Keahlian Teknik Komputer & Jaringan - SMK Guna Cipta</p>
+            <small>Lulus 2024</small>
+        </div>
+
+        <div class="port-card certificate-card">
+            <div class="cert-icon">💻</div>
+            <h3>Workshop Web Development</h3>
+            <p>Membangun Single Page Application (SPA) dengan jQuery</p>
+            <small>2024</small>
+        </div>
+
+        <div class="port-card certificate-card">
+            <div class="cert-icon">📊</div>
+            <h3>Seminar Akuntansi Digital</h3>
+            <p>Implementasi Sistem Informasi Akuntansi pada Perusahaan Transportasi</p>
+            <small>2025</small>
+        </div>
+
+        <div class="port-card certificate-card">
+            <div class="cert-icon">🛡️</div>
+            <h3>Kesehatan & Keselamatan Kerja</h3>
+            <p>Pelatihan Dasar K3 di Lingkungan Kerja Profesional</p>
+            <small>2023</small>
+        </div>
+
+        <div class="port-card certificate-card">
+            <div class="cert-icon">🚀</div>
+            <h3>Seminar Kepemimpinan</h3>
+            <p>Membangun Karakter Profesional dalam Organisasi Mahasiswa</p>
+            <small>2024</small>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .portfolio-grid { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+        gap: 20px; 
+    }
+
+    .port-card { 
+        border: 1px solid var(--border-color); 
+        border-radius: 16px; 
+        padding: 25px; 
+        text-align: center; 
+        transition: all 0.3s ease; 
+        background: var(--bg-body); /* Mengikuti warna dasar body agar kontras dengan card utama */
+    }
+
+    .port-card:hover { 
+        transform: translateY(-8px); 
+        box-shadow: 0 12px 20px -5px rgba(0,0,0,0.15); 
+        border-color: var(--primary); 
+    }
+
+    .cert-icon { 
+        font-size: 3rem; 
+        margin-bottom: 15px; 
+        filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+    }
+
+    .port-card h3 { 
+        color: var(--text-main); 
+        margin: 0 0 12px; 
+        font-size: 1.15rem; 
+        font-weight: 700;
+    }
+
+    .port-card p { 
+        color: var(--text-muted); 
+        font-size: 0.9rem; 
+        margin: 0 0 12px; 
+        line-height: 1.6; 
+    }
+
+    .port-card small { 
+        color: var(--primary); 
+        font-weight: 600;
+        letter-spacing: 0.05em;
+    }
+
+    /* Penyesuaian khusus untuk mode gelap agar shadow lebih halus */
+    .dark-mode .port-card {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+</style>

@@ -1,0 +1,46 @@
+<div class="card fade-in">
+    <h2 class="section-title" style="text-align: center; color: var(--text-main); margin-bottom: 30px;">Education History</h2>
+    
+    <div class="timeline" style="max-width: 600px; margin: 0 auto;">
+        
+        <div class="timeline-item">
+            <h4 style="color: var(--primary); margin: 0;">Universitas Ma'soem</h4>
+            <p style="margin: 5px 0; font-weight: 600; color: var(--text-main);">Komputerisasi Akuntansi | 2024 - Sekarang</p>
+            <small style="color: var(--text-muted); display: block;">Fokus pada Sistem Informasi Akuntansi dan Web Development.</small>
+        </div>
+
+        <div class="timeline-item">
+            <h4 style="color: var(--primary); margin: 0;">Sekolah Praktik Menjahit</h4>
+            <p style="margin: 5px 0; font-weight: 600; color: var(--text-main);">Kursus Kejuruan | 2023</p>
+            <small style="color: var(--text-muted); display: block;">Pelatihan keterampilan teknis produksi pakaian.</small>
+        </div>
+
+        <div class="timeline-item">
+            <h4 style="color: var(--primary); margin: 0;">MA Darul Fikri Cipongkor</h4>
+            <p style="margin: 5px 0; font-weight: 600; color: var(--text-main);">MIPA | Lulus 2022</p>
+        </div>
+
+        <div class="timeline-item">
+            <h4 style="color: var(--primary); margin: 0;">MTs Darul Fikri</h4>
+            <p style="margin: 5px 0; font-weight: 600; color: var(--text-main);">Lulus 2019</p>
+        </div>
+
+        <div class="timeline-item">
+            <h4 style="color: var(--primary); margin: 0;">SDN Ciririp</h4>
+            <p style="margin: 5px 0; font-weight: 600; color: var(--text-main);">Lulus 2016</p>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .timeline { padding: 20px 10px; }
+    .timeline-item { border-left: 3px solid var(--primary); padding-left: 25px; padding-bottom: 30px; position: relative; transition: 0.3s; }
+    .timeline-item::before { 
+        content: ''; width: 14px; height: 14px; background: var(--primary); 
+        position: absolute; left: -9px; top: 4px; border-radius: 50%; 
+        border: 2px solid var(--bg-card); box-shadow: 0 0 0 3px var(--primary-soft); 
+    }
+    .timeline-item:last-child { border-left: 3px solid transparent; padding-bottom: 0; }
+    .timeline-item:hover { transform: translateX(5px); }
+</style>
