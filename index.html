@@ -4,11 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Dimas Luqmanul Hakim - Portfolio</title>
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0284c7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <style>
         :root {
-            --bg-body: #147ee8;
+            --bg-body: #f1f5f9;
             --bg-card: #ffffff;
             --text-main: #0f172a;
             --text-muted: #475569;
@@ -55,14 +64,14 @@
             padding: 0 25px;
         }
 
-        .logo { font-weight: 700; font-size: 1.2rem; color: var(--primary); text-decoration: none; }
+        .logo { font-weight: 700; font-size: 1.2rem; color: var(--primary); text-decoration: none; text-transform: uppercase; }
 
         #main-nav { display: flex; gap: 5px; }
         #main-nav a { 
             color: var(--text-muted); 
             padding: 10px 15px; 
             text-decoration: none; 
-            font-weight: 500; 
+            font-weight: 600; 
             font-size: 0.85rem; 
             border-radius: 8px;
             transition: 0.3s;
@@ -75,7 +84,7 @@
             flex-direction: column;
             gap: 5px;
             cursor: pointer;
-            z-index: 10000; 
+            z-index: 10002; 
         }
         .hamburger span {
             width: 25px; height: 2px;
@@ -88,15 +97,14 @@
         .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
         .nav-overlay {
-    z-index: 9999; /* Lapisan hitam di bawah menu, tapi di atas konten */
-    display: none; /* Default sembunyi */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-}
+            z-index: 9999;
+            display: none; 
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--overlay-bg);
+            backdrop-filter: blur(4px);
+        }
         .nav-overlay.active { display: block; }
 
         @media (max-width: 768px) {
@@ -125,9 +133,8 @@
             }
         }
 
-        /* --- PERBAIKAN CONTAINER DISINI --- */
         #content { 
-            max-width: 600px; /* Standar ukuran mobile */
+            max-width: 700px; 
             margin: 20px auto; 
             padding: 0 15px; 
             min-height: 80vh; 
@@ -135,13 +142,12 @@
 
         .main-card-container {
             background: var(--bg-card);
-            border-radius: 24px; /* Sudut melengkung seperti di gambar */
-            padding: 25px;
+            border-radius: 24px;
+            padding: 30px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             border: 1px solid var(--border-color);
-            transition: background 0.3s;
+            transition: 0.3s;
         }
-        /* ---------------------------------- */
         
         .floating-container { position: fixed; bottom: 25px; right: 25px; z-index: 999; }
         .main-float-btn { width: 55px; height: 55px; background: var(--primary); color: white; border-radius: 16px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); font-weight: 700; }
@@ -159,8 +165,10 @@
 </head>
 <body>
     <header>
-        <a href="#" class="logo">MY PROFESIONAL CV</a>
-        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        <a href="#" class="logo">Dimas Portfolio</a>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
         <nav id="main-nav">
             <a id="nav-home" class="active">HOME</a>
             <a id="nav-about">ABOUT</a>
@@ -175,7 +183,12 @@
 
     <div class="nav-overlay" id="nav-overlay"></div>
     
-    <div id="content" class="fade-in main-card-container"></div>
+    <main id="content" class="fade-in">
+        <div class="main-card-container">
+            <!-- Konten akan dimuat oleh app.js -->
+            Memuat konten...
+        </div>
+    </main>
 
     <div class="floating-container">
         <div class="floating-menu">
@@ -186,6 +199,37 @@
         <div class="main-float-btn">HELP</div>
     </div>
 
+    <!-- Script PWA Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('PWA: Service Worker terdaftar!'))
+                    .catch(err => console.log('PWA: Registrasi gagal:', err));
+            });
+        }
+
+        // Logic Navigasi Mobile sederhana
+        const hamburger = document.getElementById('hamburger');
+        const mainNav = document.getElementById('main-nav');
+        const overlay = document.getElementById('nav-overlay');
+
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            mainNav.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // Menutup menu saat link diklik (untuk mobile)
+        document.querySelectorAll('#main-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('open')) toggleMenu();
+            });
+        });
+    </script>
     <script src="app.js"></script>
 </body>
 </html>
