@@ -1,37 +1,38 @@
 $(document).ready(function() {
     
     /**
-* 1. LOGIKA MENU MOBILE (HAMBURGER & OVERLAY)
- */
-function toggleMenu(forceClose = false) {
-    const $nav = $('#main-nav');
-    const $overlay = $('#nav-overlay');
-    const $hamburger = $('#hamburger');
+     * 1. LOGIKA MENU MOBILE (HAMBURGER & OVERLAY)
+     */
+    function toggleMenu(forceClose = false) {
+        const $nav = $('#main-nav');
+        const $overlay = $('#nav-overlay');
+        const $hamburger = $('#hamburger');
 
-    // Jika dipaksa tutup atau memang sudah terbuka
-    if (forceClose || $nav.hasClass('open')) {
-        $hamburger.removeClass('active');
-        $nav.removeClass('open');
-        $overlay.removeClass('active'); // Menghapus class active di CSS
-        $('body').css('overflow', 'auto');
-    } else {
-        // Hanya jalan di layar mobile
-        if (window.innerWidth <= 768) {
-            $hamburger.addClass('active');
-            $nav.addClass('open');
-            $overlay.addClass('active'); // Memunculkan overlay
-            $('body').css('overflow', 'hidden');
+        // Jika dipaksa tutup atau memang kelas .open sudah aktif
+        if (forceClose || $nav.hasClass('open')) {
+            $hamburger.removeClass('active');
+            $nav.removeClass('open');
+            $overlay.removeClass('active'); 
+            $('body').css('overflow', 'auto');
+        } else {
+            // Hanya dipicu jika ukuran layar mobile/tablet
+            if (window.innerWidth <= 768) {
+                $hamburger.addClass('active');
+                $nav.addClass('open');
+                $overlay.addClass('active'); 
+                $('body').css('overflow', 'hidden');
+            }
         }
     }
-}
 
-    // Event click hamburger
+    // Menggunakan direct listener untuk performa klik instan pada mobile terhindar dari conflict bubble event
     $(document).on('click', '#hamburger', function(e) {
         e.preventDefault();
+        e.stopPropagation();
         toggleMenu();
     });
 
-    // Event click overlay untuk menutup menu
+    // Menutup menu jika area hitam transparan (overlay) diklik oleh pengguna
     $(document).on('click', '#nav-overlay', function(e) {
         e.preventDefault();
         toggleMenu(true);
@@ -63,27 +64,17 @@ function toggleMenu(forceClose = false) {
      * 3. FUNGSI NAVIGASI SPA (AJAX)
      */
     function loadContent(page) {
-        // 1. Ambil elemen #content (yang sekarang sudah punya background putih)
         const $content = $("#content");
     
-        // 2. Beri efek transisi halus (menghilang sejenak)
         $content.animate({ opacity: 0, marginTop: "10px" }, 200, function() {
-            
-            // 3. Ambil data dari file eksternal (misal: about.html)
             $content.load(page, function(response, status, xhr) {
-                
-                // 4. Jika file tidak ketemu, tampilkan pesan error di dalam kotak putih tersebut
                 if (status == "error") {
                     $content.html('<div style="padding:40px; text-align:center;"><h2>Opps!</h2><p>Halaman tidak ditemukan.</p></div>');
                 }
                 
-                // 5. Munculkan kembali dengan animasi (efek fade-in)
                 $content.css("marginTop", "0px").animate({ opacity: 1 }, 300);
-                
-                // 6. Scroll otomatis ke atas agar user tidak bingung saat pindah menu
                 window.scrollTo({ top: 0, behavior: 'smooth' });
     
-                // 7. Jalankan fungsi khusus jika yang dibuka halaman GitHub atau Contact
                 if (page === "github.html") setTimeout(fetchGitHubData, 100);
                 if (page === "contact.html") { 
                     restoreFormData(); 
@@ -94,37 +85,31 @@ function toggleMenu(forceClose = false) {
     }
 
     /**
- * 4. EVENT CLICK NAVIGASI
- */
-$(document).on("click", "#main-nav a", function(e) {
-    e.preventDefault();
-    e.stopPropagation(); // Stop klik agar tidak tembus ke overlay
+     * 4. EVENT CLICK NAVIGASI LINK
+     */
+    $(document).on("click", "#main-nav a", function(e) {
+        e.preventDefault();
+        e.stopPropagation(); 
 
-    let id = $(this).attr("id");
-    
-    // Update menu aktif
-    $("#main-nav a").removeClass("active");
-    $(this).addClass("active");
+        let id = $(this).attr("id");
+        
+        $("#main-nav a").removeClass("active");
+        $(this).addClass("active");
 
-    // Load konten
-    if (id) {
-        let targetPage = id.replace("nav-", "") + ".html";
-        if (targetPage !== ".html") {
-            loadContent(targetPage);
+        if (id) {
+            let targetPage = id.replace("nav-", "") + ".html";
+            if (targetPage !== ".html") {
+                loadContent(targetPage);
+            }
         }
-    }
 
-    // Tutup menu otomatis setelah klik (untuk mobile)
-    if (window.innerWidth <= 768) {
-        toggleMenu(true); 
-    }
-});
+        // Otomatis tutup laci navigasi slide-in setelah link menu ditekan pada perangkat mobile
+        if (window.innerWidth <= 768) {
+            toggleMenu(true); 
+        }
+    });
 
-// Event klik overlay untuk menutup menu jika user klik di area hitam
-$(document).on('click', '#nav-overlay', function(e) {
-    toggleMenu(true);
-});
-    // Halaman default saat load pertama kali
+    // Halaman awal default saat dibuka
     loadContent("home.html");
 
     /**
