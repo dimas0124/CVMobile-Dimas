@@ -96,9 +96,15 @@ $(document).ready(function() {
         $(this).addClass("active");
 
         if (id) {
-            let targetPage = id.replace("nav-", "") + ".html";
-            if (targetPage !== ".html") {
-                loadContent(targetPage);
+            // FOKUS PENAMBAHAN: Jika menu smartcampus diklik, panggil file smartcampus.html secara langsung
+            if (id === "nav-smartcampus") {
+                loadContent("smartcampus.html");
+            } else {
+                // Kode bawaan asli kamu tetap berjalan normal untuk menu lainnya
+                let targetPage = id.replace("nav-", "") + ".html";
+                if (targetPage !== ".html") {
+                    loadContent(targetPage);
+                }
             }
         }
 
@@ -222,8 +228,8 @@ $(document).ready(function() {
                 repos.forEach(repo => {
                     html += `
                     <div class="repo-item" style="border: 1px solid var(--border-color); padding: 18px; border-radius: 12px; margin-bottom: 12px; background: var(--bg-card); transition: 0.3s;">
-                        <a href="${repo.html_url}" target="_blank" style="text-decoration:none; color:var(--primary); font-weight:700; font-size:1.1rem;">${repo.name}</a>
-                        <p style="margin:8px 0 0; font-size:0.9rem; color: var(--text-muted); line-height:1.4;">${repo.description || "Proyek Akademik Mahasiswa"}</p>
+                        <a href="${repo.html_url}" target="_blank" style="text-decoration:none; color:var(--primary); font-weight:700; font-size:1.1rem;\">${repo.name}</a>
+                        <p style="margin:8px 0 0; font-size:0.9rem; color: var(--text-muted); line-height:1.4;\">${repo.description || "Proyek Akademik Mahasiswa"}</p>
                     </div>`;
                 });
                 $("#gh-repo-list").html(html);
