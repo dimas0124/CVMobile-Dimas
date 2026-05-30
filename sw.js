@@ -1,5 +1,5 @@
 (self => {
-    const CACHE_NAME = 'cv-dimas-v1';
+    const CACHE_NAME = 'cv-dimas-v2';
     const assetsToCache = [
       '/',
       '/index.html',
