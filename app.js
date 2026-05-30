@@ -28,7 +28,6 @@ $(document).ready(function() {
     // Menggunakan direct listener untuk performa klik instan pada mobile terhindar dari conflict bubble event
     $(document).on('click', '#hamburger', function(e) {
         e.preventDefault();
-        e.stopPropagation();
         toggleMenu();
     });
 
